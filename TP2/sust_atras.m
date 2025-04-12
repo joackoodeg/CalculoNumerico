@@ -1,12 +1,24 @@
+% Función genérica para sustitución hacia atrás
 function x = sust_atras(A, b)
-  n = length(b);
-  x = zeros(size(b));
+    % Resuelve un sistema Ax = b donde A es triangular superior
+    % Entradas:
+    %   A: matriz de coeficientes triangular superior
+    %   b: vector de términos independientes
+    % Salida:
+    %   x: vector solución del sistema
 
-  % Resolvemos de abajo hacia arriba
-  x(n) = b(n)/A(n,n);
+    n = length(b);
+    x = zeros(n, 1);
 
-  for i = n-1:-1:1
-    % Forma vectorizada: extraemos todos los valores conocidos de una vez
-    x(i) = (b(i) - A(i,i+1:n)*x(i+1:n))/A(i,i);
-  end
+    % Calculamos la última incógnita
+    x(n) = b(n) / A(n, n);
+
+    % Calculamos las demás incógnitas de abajo hacia arriba
+    for i = n-1:-1:1
+        suma = 0;
+        for j = i+1:n
+            suma = suma + A(i, j) * x(j);
+        end
+        x(i) = (b(i) - suma) / A(i, i);
+    end
 end
