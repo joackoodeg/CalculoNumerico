@@ -20,13 +20,7 @@ function x = gauss_elim(A, b)
     end
 
     % Crear la matriz aumentada [A|b]
-    Ab = zeros(n, n+1);
-    for i = 1:n
-        for j = 1:n
-            Ab(i,j) = A(i,j);
-        end
-        Ab(i,n+1) = b(i);
-    end
+    Ab = [A, b];
 
     % Fase de eliminación - transformar a forma triangular superior
     for k = 1:n-1
