@@ -1,4 +1,4 @@
-function [x, r, it]=Jacobi(A, b, x0, maxit, tol)
+function [x, r, it]=jacobi(A, b, x0, maxit, tol)
 
  n = length(A(1,:));
  x = x0; # debe inicializarse x
