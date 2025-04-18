@@ -1,4 +1,4 @@
-function [x, r, it] = gausseidel(A, b, x0, maxit, tol)
+function [x, r, it] = gaussseidel(A, b, x0, maxit, tol)
 
  n = length(A(1,:));
  x = x0; # debe inicializarse x

@@ -16,6 +16,7 @@ b2 = [5; 3; -1];
 x0 = zeros(size(b1));
 maxit = 100;
 tol = 1e-6;
+w=1;
 
 % Llamar a la función Jacobi
 [x, r, it] = gaussseidel(A1, b1, x0, maxit, tol);
