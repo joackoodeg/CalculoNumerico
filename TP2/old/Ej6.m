@@ -17,7 +17,28 @@ A = [1, -1, -1, 0;
 
 b = [0; 0; 12; 0];
 
-x = gauss_elim(A, b);
+% b) Resolvemos usando eliminación de Gauss
+% Creamos matriz aumentada
+Ab = [A, b];
+
+% Fase de eliminación
+n = size(A, 1);
+for k = 1:n-1
+    for i = k+1:n
+        factor = Ab(i,k) / Ab(k,k);
+        Ab(i,k) = 0; % Explícitamente establecemos a cero para evitar errores de redondeo
+        for j = k+1:n+1
+            Ab(i,j) = Ab(i,j) - factor * Ab(k,j);
+        end
+    end
+end
+
+% Fase de sustitución hacia atrás
+x = zeros(n, 1);
+x(n) = Ab(n,n+1) / Ab(n,n);
+for i = n-1:-1:1
+    x(i) = (Ab(i,n+1) - Ab(i,i+1:n) * x(i+1:n)) / Ab(i,i);
+end
 
 disp('Las corrientes del circuito son:');
 disp(['i1 = ', num2str(x(1))]);

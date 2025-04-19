@@ -20,25 +20,29 @@ function x = gauss_elim(A, b)
     end
 
     % Crear la matriz aumentada [A|b]
-    Ab = [A, b];
+    A = [A, b];
 
     % Fase de eliminación - transformar a forma triangular superior
     for k = 1:n-1
         % Comprobar si el pivote es cero
-        if abs(Ab(k,k)) < eps
+        if abs(A(k,k)) < eps
             error('Pivote nulo encontrado. Considere usar pivoteo');
         end
 
         for i = k+1:n
-            factor = Ab(i,k) / Ab(k,k);
+            factor = A(i,k) / A(k,k);
 
             % Actualizar la fila i
             for j = k:n+1
-                Ab(i,j) = Ab(i,j) - factor * Ab(k,j);
+                A(i,j) = A(i,j) - factor * A(k,j);
             end
         end
     end
 
+    if (A(n,n)==0)
+        disp('no hay sol. unica')
+    endif
+
     % Fase de sustitución hacia atrás
-    x = sust_atras_aum(Ab);
+    x = sust_atras_aum(A);
 end
