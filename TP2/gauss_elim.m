@@ -44,5 +44,9 @@ function x = gauss_elim(A, b)
     endif
 
     % Fase de sustitución hacia atrás
-    x = sust_atras_aum(A);
+    %b= A(:,end); % Todas las filas, de la ultima columna
+    %A=A(:, 1:end-1); % Todas las filas desde la 1 hasta la penultima
+    %x = sust_atras(A, b);
+
+    x=sust_atras_aum(A);
 end

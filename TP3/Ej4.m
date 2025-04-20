@@ -1,7 +1,3 @@
-%2)
-
-% No es diagonal domiannte - > Puede no converger
-
   A=[10 5 0 0; 5 10 -4 0; 0 -4 8 -1; 0 0 -1 5];
   b = [5; 25; -11; -11];
 

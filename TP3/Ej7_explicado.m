@@ -43,3 +43,4 @@ A = diag(main_diag) + ...
 b = pi * ones(n,1); %crea un vector b con todos los valores iguales a pi
 
 
+

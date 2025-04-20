@@ -19,8 +19,13 @@ b = [0; 0; 12; 0];
 
 x = gauss_elim(A, b);
 
+e = norm(A*x-b);
+disp(e);
+
 disp('Las corrientes del circuito son:');
 disp(['i1 = ', num2str(x(1))]);
 disp(['i2 = ', num2str(x(2))]);
 disp(['i3 = ', num2str(x(3))]);
 disp(['i4 = ', num2str(x(4))]);
+
+

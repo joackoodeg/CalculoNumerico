@@ -1,4 +1,4 @@
-function [x, rh, it] =sor(A, b, x0, maxit, tol, w)
+function [x, rh, it]=sor(A, b, x0, maxit, tol, w)
 
  n = length(A(1,:));
  x = x0; # debe inicializarse x
