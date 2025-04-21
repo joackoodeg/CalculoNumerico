@@ -1,4 +1,9 @@
 function [A, r] = doolittle_p(A)
+  % Devuelve:
+  % A: la matriz donde L (bajo la diagonal) y U (encima de la diagonal) están guardados,
+  % pero no en el orden final correcto de filas;
+  % r: el vector de permutación que indica el orden real de las filas.
+
     n = size(A, 1);
     r = 1:n;  % Vector de permutación
     epsilon = 1e-9;

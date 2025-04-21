@@ -34,10 +34,11 @@ for i = 1:3
     % Con pivoteo
     [Ap, r_indices] = doolittle_p(A);
     PA = A(r_indices, :);
+    Af = Ap(r_indices, :);  % <- Esta línea es necesaria
     % Construye la matriz permutada PA, es decir, reordena las filas de A de acuerdo al pivoteo hecho por doolittle_p
 
-    L = tril(Ap, -1) + eye(size(A));
-    U = triu(Ap);
+    L = tril(Af, -1) + eye(size(A));
+    U = triu(Af);
 
     bp = b(r_indices);
     % Permuta el vector del lado derecho b con el mismo orden que se usó en las filas de A. Esto asegura que estés resolviendo el sistema
