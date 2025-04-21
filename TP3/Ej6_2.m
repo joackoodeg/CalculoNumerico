@@ -1,9 +1,9 @@
 %2)
 
-% No es diagonal domiannte - > Puede no converger
+% No es diagonal domiannte - > Puede no converger -> cambiar fila 2 y 3
 
-A=[3 1 1; 3 1 -5; 1 3 -1];
-b=[5; -1; 3];
+A=[3 1 1; 1 3 -1; 3 1 -5];
+b=[5; 3 ;-1];
 
 x0=zeros(length(b),1);
 maxit=1000;

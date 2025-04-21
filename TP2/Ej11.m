@@ -13,8 +13,7 @@ disp(A);
 A_np = A;  % Copia de A para no modificarla
 A_fact_np = doolittle(A_np);  % Asume que tenés esta función definida
 
-L_np = tril(A_fact_np, -1) + eye(n);
-U_np = triu(A_fact_np);
+[L_np, U_np] = lu(A_fact_np)
 
 disp("Factorización sin pivoteo (A = L*U):");
 disp("L:");
