@@ -1,6 +1,8 @@
+% Definimos la función y su derivada
 f = @(x) x .* (log(x + 3) - 17) - 1;
 df = @(x) log(x + 3) - 17 + x ./ (x + 3);
 
+% Paso 1: Encontrar un intervalo donde está el cero
 a = 0;
 b = 1;
 
@@ -13,7 +15,7 @@ disp(["Intervalo encontrado: [", num2str(a), ", ", num2str(b), "]"]);
 kmax = 100;
 
 % Paso 2: Bisección con error absoluto < 1e-2
-[x_bis, h_bis] = biseccion(f, 0, 1, kmax, 1e-2);
+[x_bis, h_bis] = biseccion(f, a, b, kmax, 1e-2);
 disp("Aproximación por bisección:");
 disp(x_bis);
 
@@ -24,4 +26,3 @@ disp(x_newt);
 
 disp(["Iteraciones bisección: ", num2str(length(h_bis))]);
 disp(["Iteraciones Newton: ", num2str(length(h_newt))]);
-
