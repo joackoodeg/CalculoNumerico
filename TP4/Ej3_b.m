@@ -20,4 +20,3 @@ disp('g1: '); disp([x1, length(h1)]);
 disp('g2: '); disp([x2, length(h2)]);
 disp('g3: '); disp([x3, length(h3)]);
 disp('g4: '); disp([x4, length(h4)]);
-
