@@ -8,7 +8,7 @@ function [x, h] = biseccion(f, xmin, xmax, kmax, tol)
     x = (a + b)/2;      % Punto medio
     h(end+1) = x;       % Guardamos el valor en historial
 
-    % --- Criterios de parada  ---
+    % --- Criterios de parada (DESCOMENTAR solo uno) ---
 
     % 1) Criterio absoluto entre dos iteraciones:
     % if k > 1 && abs(x - x_prev) <= tol
@@ -16,14 +16,14 @@ function [x, h] = biseccion(f, xmin, xmax, kmax, tol)
     % endif
 
     % 2) Criterio relativo entre dos iteraciones:
-     if k > 1 && abs(x - x_prev)/abs(x) <= tol
-       return;
-     endif
+    % if k > 1 && abs(x - x_prev)/abs(x) <= tol
+    %   return;
+    % endif
 
     % 3) Criterio del valor de la función:
-    %if abs(f(x)) <= tol || abs(b - a)/2 < tol
-    %  return;
-    %endif
+    if abs(f(x)) <= tol || abs(b - a)/2 < tol
+      return;
+    endif
 
     % ----------------------------------------------
 

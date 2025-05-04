@@ -53,4 +53,3 @@ grid on;
 % Eror absoluto norma infinito
 % r(it+1) = norm( x-x0, inf);
 
-
