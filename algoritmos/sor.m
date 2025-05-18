@@ -22,16 +22,16 @@ function [x, rh, it] = sor(A, b, x0, maxit, tol, w)
     % endif
 
     % ----> Criterio 2: Error absoluto infinito ||x - x0||_inf
-    % rh(it+1) = norm(x - x0, inf);
-    % if rh(it+1) < tol
-    %   break;
-    % endif
+     rh(it+1) = norm(x - x0, inf);
+     if rh(it+1) < tol
+       break;
+     endif
 
     % ----> Criterio 3: Error relativo infinito ||x - x0||_inf / ||x||_inf (activo por defecto)
-    rh(it+1) = norm(x - x0, inf) / norm(x, inf);
-    if rh(it+1) < tol
-      break;
-    endif
+    %rh(it+1) = norm(x - x0, inf) / norm(x, inf);
+    %if rh(it+1) < tol
+    %  break;
+    %endif
 
     % =================================
 
