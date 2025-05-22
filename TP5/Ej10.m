@@ -34,17 +34,17 @@ fprintf('Tiempo estimado para alcanzar 200 CFU/100mL: %.2f horas\n', t_200);
 
 
 % Gráfica del modelo y los datos
-t_graf = linspace(0, 40, 100);
-c_modelo = b * exp(-k * t_graf);
+%t_graf = linspace(0, 40, 100);
+%c_modelo = b * exp(-k * t_graf);
 
-figure;
-plot(t, c, 'ro', 'MarkerSize', 8, 'LineWidth', 2);
-hold on;
-plot(t_graf, c_modelo, 'b-', 'LineWidth', 2);
-plot([0], [c0], 'g*', 'MarkerSize', 10);
-plot([t_200], [200], 'm*', 'MarkerSize', 10);
-xlabel('Tiempo (horas)');
-ylabel('Concentración (CFU/100mL)');
-title('Modelo de concentración bacteriana después de una tormenta');
-legend('Datos medidos', 'Modelo ajustado', 'Concentración inicial', 'Concentración = 200 CFU/100mL');
-grid on;
+%figure;
+%plot(t, c, 'ro', 'MarkerSize', 8, 'LineWidth', 2);
+%hold on;
+%plot(t_graf, c_modelo, 'b-', 'LineWidth', 2);
+%plot([0], [c0], 'g*', 'MarkerSize', 10);
+%plot([t_200], [200], 'm*', 'MarkerSize', 10);
+%xlabel('Tiempo (horas)');
+%ylabel('Concentración (CFU/100mL)');
+%title('Modelo de concentración bacteriana después de una tormenta');
+%legend('Datos medidos', 'Modelo ajustado', 'Concentración inicial', 'Concentración = 200 CFU/100mL');
+%grid on;
