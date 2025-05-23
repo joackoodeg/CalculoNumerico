@@ -1,91 +1,58 @@
-% Ejercicio 11 - Trabajo Práctico 5
-% Cálculo Numérico 2025
+% Tiempo en horas (cada 12 minutos = 1/5 h)
+t = (0:25) * (1/5);
 
-% Defino el vector de tiempo (en horas)
-% Dado que se registró cada 12 minutos durante 5 horas
-t = 0:0.2:5;  % 26 puntos de 0 a 5 horas, cada 0.2 horas
+% Velocidades medidas (en km/h)
+v = [0.61255, 1.40101, 2.69013, 3.40985, 3.95361, 3.59041, ...
+     3.09119, 2.71147, 2.01397, 1.35229, 1.09930, 1.30715, ...
+     1.99290, 3.46081, 5.34487, 7.50176, 9.35324, 11.22945, ...
+     12.76212, 13.99448, 14.41532, 14.47064, 13.91045, ...
+     13.01681, 12.18537, 11.26826];
+# A
 
-% Datos de velocidad del archivo
-v = [0.61255; 1.40101; 2.69013; 3.40985; 3.95361; 3.59041;
-     3.09119; 2.71147; 2.01397; 1.35229; 1.09930; 1.30715;
-     1.99290; 3.46081; 5.34487; 7.50176; 9.35324; 11.22945;
-     12.76212; 13.99448; 14.41532; 14.47064; 13.91045; 13.01681;
-     12.18537; 11.26826];
+% Matriz de diseño
+A = [sin(2*t') t'.^2 t'.^3 ones(length(t), 1)];
 
-% a) Ajuste para v(t) = c₁ sin(2t) + c₂t² + c₃/t + c₄
-% Manejo especial para t=0 debido a la singularidad en c₃/t
-t_nozero = t(2:end);  % Excluyendo t=0
-v_nozero = v(2:end);  % Valores correspondientes
+% Resolver sistema de mínimos cuadrados
+c = A \ v';
 
-A_nozero = zeros(length(t_nozero), 4);
-A_nozero(:,1) = sin(2*t_nozero);      % c₁ sin(2t)
-A_nozero(:,2) = t_nozero.^2;          % c₂t²
-A_nozero(:,3) = 1./t_nozero;          % c₃/t
-A_nozero(:,4) = ones(size(t_nozero)); % c₄
+% Mostrar coeficientes con 4 decimales
+printf("Coeficientes del modelo (a):\n");
+printf("c1 = %.4f\nc2 = %.4f\nc3 = %.4f\nc4 = %.4f\n", c);
 
-% Resolviendo por mínimos cuadrados
-c = A_nozero \ v_nozero;
+% Predecir velocidad a las 6 horas
+v6_a = c(1)*sin(2*6) + c(2)*6^2 + c(3)*6^3 + c(4);
+printf("Predicción v(6) modelo (a): %.4f km/h\n", v6_a);
 
-fprintf('a) Función de la forma v(t) = c₁sin(2t) + c₂t² + c₃/t + c₄\n');
-fprintf('   c₁ = %.4f\n', c(1));
-fprintf('   c₂ = %.4f\n', c(2));
-fprintf('   c₃ = %.4f\n', c(3));
-fprintf('   c₄ = %.4f\n', c(4));
+# B
 
-% Predicción para t = 6 horas
-t_predict = 6;
-v_predict_a = c(1)*sin(2*t_predict) + c(2)*t_predict^2 + c(3)/t_predict + c(4);
-fprintf('   Velocidad predicha a las 6 horas: %.4f km/h\n', v_predict_a);
-
-% b) Polinomio de grado ≤ 6
+% Ajuste polinomial grado 6
 p = polyfit(t, v, 6);
 
-fprintf('\nb) Polinomio de grado ≤ 6\n');
-fprintf('   Coeficientes (de mayor a menor grado):\n   ');
-fprintf('%.4e ', p);
-fprintf('\n');
+% Mostrar coeficientes
+disp("Coeficientes del polinomio grado 6:");
+disp(p');
 
-% Predicción para t = 6 horas con el polinomio
-v_predict_b = polyval(p, 6);
-fprintf('   Velocidad predicha a las 6 horas: %.4f km/h\n', v_predict_b);
+% Predecir v(6)
+v6_b = polyval(p, 6);
+printf("Predicción v(6) modelo (b): %.4f km/h\n", v6_b);
 
-% c) Cálculo del error cuadrático para ambos ajustes
-% Para el modelo (a), manejo especial para t=0
-v_model_a = zeros(size(t));
-v_model_a(1) = c(4);  % Solo el término constante en t=0
-for i = 2:length(t)
-    v_model_a(i) = c(1)*sin(2*t(i)) + c(2)*t(i)^2 + c(3)/t(i) + c(4);
-end
-error_a = sum((v - v_model_a).^2);
+# C
+% Modelo (a)
+v_a = A * c;
+ECM_a = mean((v' - v_a).^2);
 
-% Para el modelo polinómico
-v_model_b = polyval(p, t);
-error_b = sum((v - v_model_b).^2);
+% Modelo (b)
+v_b = polyval(p, t);
+ECM_b = mean((v - v_b).^2);
 
-fprintf('\nc) Análisis de errores cuadráticos\n');
-fprintf('   Error cuadrático del modelo a: %.4f\n', error_a);
-fprintf('   Error cuadrático del modelo b: %.4f\n', error_b);
+printf("Error cuadrático medio modelo (a): %.6f\n", ECM_a);
+printf("Error cuadrático medio modelo (b): %.6f\n", ECM_b);
 
-if error_a < error_b
-    fprintf('   El modelo a tiene menor error y es más apropiado.\n');
-    mejor_modelo = 'a';
-else
-    fprintf('   El modelo b (polinomio) tiene menor error y es más apropiado.\n');
-    mejor_modelo = 'b';
-end
+# D
+% Modelo elegido: polinomio grado 6 (b)
+f = @(t) polyval(p, t);  % función anónima
 
-% d) Cálculo de la distancia recorrida usando el modelo apropiado
-% Integración numérica, evitando singularidad en t=0 para modelo a
-t_denso = linspace(0.001, 6, 1000);  % Evitando t=0 exactamente
-v_denso_a = c(1)*sin(2*t_denso) + c(2)*t_denso.^2 + c(3)./t_denso + c(4);
-distancia_a = trapz(t_denso, v_denso_a);
+% Integrar de t=0 a t=6
+distancia = quad(f, 0, 6);  % si da error, usa `integral(f, 0, 6)` en versiones nuevas
+printf("Distancia recorrida en 6 horas (modelo b): %.4f km\n", distancia);
 
-v_denso_b = polyval(p, t_denso);
-distancia_b = trapz(t_denso, v_denso_b);
-
-fprintf('\nd) Cálculo de la distancia recorrida en las primeras 6 horas\n');
-if strcmp(mejor_modelo, 'a')
-    fprintf('   Usando el modelo a, distancia recorrida: %.4f km\n', distancia_a);
-else
-    fprintf('   Usando el modelo b, distancia recorrida: %.4f km\n', distancia_b);
-end
