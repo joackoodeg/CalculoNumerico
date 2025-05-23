@@ -1,4 +1,10 @@
-% Datos del problema
+% Datos del problema - ESTA MAL
+% Para un spline cúbico, necesitamos que se cumplan las condiciones de continuidad:
+% 1. S0(1) = S1(1) (continuidad de la función)
+% 2. S0'(1) = S1'(1) (continuidad de la primera derivada)
+% 3. S0''(1) = S1''(1) (continuidad de la segunda derivada)
+% 4. S0''(0) = 0 y S1''(2) = 0 (condiciones de spline natural
+
 x = [0 0.5 1 2 3];
 y = [1 1.5 2 0 1];
 

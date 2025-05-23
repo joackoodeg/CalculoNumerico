@@ -1,4 +1,6 @@
 function [P, L] = Lagrange(x,y)
+  % P: Polinomio de Lagrande
+  % L: Contiene los coeficientes de polinomio base Li(x)
   n = length(x);
   P = zeros(1,n);
   L = zeros(n,n);
@@ -7,7 +9,7 @@ function [P, L] = Lagrange(x,y)
     for j=1:i-1
       L(i,:) = (conv(L(i,:),[1,-x(j)]))(2:n+1)/(x(i) - x(j))
     endfor
-    
+
     for j = i+1:n
       L(i,:) = (conv(L(i,:),[1,-x(j)]))(2:n+1)/(x(i) - x(j));
     endfor
