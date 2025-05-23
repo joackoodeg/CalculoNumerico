@@ -1,6 +1,6 @@
+% P: Polinomio de Lagrande
+% L: Contiene los coeficientes de polinomio base Li(x)
 function [P, L] = Lagrange(x,y)
-  % P: Polinomio de Lagrande
-  % L: Contiene los coeficientes de polinomio base Li(x)
   n = length(x);
   P = zeros(1,n);
   L = zeros(n,n);
