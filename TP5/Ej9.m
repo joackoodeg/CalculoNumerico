@@ -17,6 +17,10 @@ fprintf("a = %.6f\n", a);
 fprintf("b = %.6f\n", b);
 fprintf("c = %.6f\n", c);
 
+# Obtener el polinomio
+disp("Polinomio formado: ");
+disp(polyout(coef, 'x'));
+
 % Gráfico
 xg = linspace(-1.5, 2.5, 200);
 yg = -exp(a * xg.^2 + b * xg + c);

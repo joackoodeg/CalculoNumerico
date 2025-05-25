@@ -25,8 +25,8 @@ dy1b = 0; dy2b = 0;
 % Crear puntos de evaluación
 tt1 = linspace(0,2,100);
 tt2 = linspace(2,4,100);
-xt1 = zeros(size(tt1)); yt1 = zeros(size(tt1));
-xt2 = zeros(size(tt2)); yt2 = zeros(size(tt2));
+%xt1 = zeros(size(tt1)); yt1 = zeros(size(tt1));
+%xt2 = zeros(size(tt2)); yt2 = zeros(size(tt2));
 
 % Evaluar splines por tramos
 xt1 = spline_eval(tt1, t1, ax1, bx1, cx1, dx1);
