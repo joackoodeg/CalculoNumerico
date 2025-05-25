@@ -1,4 +1,4 @@
-% Tiempo en horas (cada 12 minutos = 1/5 h)
+ % Tiempo en horas (cada 12 minutos = 1/5 h)
 t = (0:25) * (1/5);
 
 % Velocidades medidas (en km/h)
