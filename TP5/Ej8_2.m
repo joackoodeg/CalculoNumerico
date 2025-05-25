@@ -21,9 +21,10 @@ plot(t, polyval(p2,t), 'g'); hold on;
 grid on;
 
 % errores
-e_p6 = norm(polyval(p6, x) - y);
-e_p1 = norm(polyval(p1, x) - y);
-e_p2 = norm(polyval(p2, x) - y);
+disp("errores cuadraticos")
+e_p6 = mean(y - polyval(p6, x).^2);
+e_p1 = mean(y - polyval(p1, x).^2);
+e_p2 = mean(y -polyval(p2, x).^2);
 disp(e_p6);
 disp(e_p2);
 disp(e_p1);

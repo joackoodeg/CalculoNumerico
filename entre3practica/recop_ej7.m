@@ -19,3 +19,6 @@ y_nueva = @(x) a .* exp(b .* x);
 
 x_a = y_nueva(1.9);
 printf("a) %.5f", x_a);
+
+% b)
+

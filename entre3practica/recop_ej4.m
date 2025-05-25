@@ -9,6 +9,7 @@ dfn = df(6);
 [a,b,c,d] = cubic_spline_clamped(x,y(x),df1,dfn); % IMPORTANTE : PASAR y(x) NO y
 
 val = spline_eval(4.2, x, a, b, c, d);
+disp(val);
 dif = abs(val - y(4.2));
 disp(dif);
 

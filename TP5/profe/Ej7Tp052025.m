@@ -3,10 +3,11 @@
 clear all; clc; clf;
 
 t1=[0 1 2];
-t2=[2 3 4];
 x1=[0 2 6];
-x2=[6 3 0];
 y1=[0 4 6];
+
+t2=[2 3 4];
+x2=[6 3 0];
 y2=[6 2 0];
 
 % curva t vs x (tiempo coordenada x)
