@@ -39,7 +39,6 @@ fprintf('La temperatura en el punto medio (x=2.5 cm) de la barra es: %.4f °C\n'
 % 4. Se ejecutó la función 'dif_fin_rob' para obtener la distribución de temperatura 'y_sol' en los nodos 'x_sol'.
 % 5. Se localizó el nodo más cercano a x=2.5 (punto medio) y se extrajo la temperatura correspondiente.
 
-% (Opcional) Graficar la distribución de temperatura
 figure;
 plot(x_sol, y_sol, '-b');
 xlabel('Posición x (cm)');
@@ -49,11 +48,4 @@ grid on;
 hold on;
 plot(x_sol(idx_mid_point), temp_mid_point, 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
 text(x_sol(idx_mid_point) + 0.1, temp_mid_point, sprintf('Temp en x=2.5: %.4f °C', temp_mid_point), 'VerticalAlignment', 'bottom');
-hold off;
-
-% Verificación de precisión: se puede probar con un L mayor para ver si el cuarto decimal cambia
-% L_val_test = 800;
-% [x_test, y_test, ~] = dif_fin_rob(f_ejercicio6, inter, ycd_alpha, rob_condition, L_val_test);
-% [~, idx_mid_point_test] = min(abs(x_test - 2.5));
-% temp_mid_point_test = y_test(idx_mid_point_test);
-% fprintf('Temperatura con L=800: %.4f °C\n', temp_mid_point_test);
+hold off;;
