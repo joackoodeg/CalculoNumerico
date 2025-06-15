@@ -28,3 +28,6 @@ for i=1:length(x1)-1
   ddS=@(x) ddS(x) +...
   polyval(ddM(i,:),x-x1(i)).*(x>x1(i)).*(x<=x1(i+1));
 endfor
+
+coeficientes = [a; b; c; d];  % cada fila tiene coeficientes para un tramo
+assignin("base", "coeficientes_spline", coeficientes);
