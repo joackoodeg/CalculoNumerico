@@ -10,3 +10,6 @@ Qsimp = simpsoncomp(x,y);
 format long;
 disp(Qtrap);
 disp(Qsimp);
+
+error_relativo = abs(Qsimp - Qtrap) / abs(Qsimp);
+disp(error_relativo);

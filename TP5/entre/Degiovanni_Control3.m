@@ -4,21 +4,22 @@ x = [-1 1 2 3 4]';
 y = [0.23 0.25 0.26 0.14 0.06]';
 
 z = 1 ./ y;
+
 f1 = exp(x);
 f2 = x;
-f3 = ones(size(x));
+f3 = ones(size(x)); % para el término constante (7.5/a)
 
 M = [f1, f2, f3];
 
-A = M' * M;
-b_vec = M' * z;
-c = A \ b_vec;
+% Resolver mínimos cuadrados
+c = M \ z;
 
-a = 1 / c(3);
-b = c(1) * a;
-cc = c(2) * a; % no confudir
+% c = [alpha; beta; gamma]
+a = 7.5 / c(3);
+b = a * c(1);
+cc = a * c(2);  % c ya está usado como vector de coef.
 
-printf("a): \n")
+% Mostrar
 printf("a = %.7f\n", a);
 printf("b = %.8f\n", b);
 printf("c = %.7f\n", cc);
