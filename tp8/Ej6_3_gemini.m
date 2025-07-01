@@ -51,6 +51,7 @@ rob = [A, B, C];
 % Temperatura en el punto medio de la barra (x = 2.5 cm)
 % Se busca el índice más cercano a x=2.5 para robustez
 [~, idx_medio] = min(abs(x - 2.5));
+disp(idx_medio);
 fprintf("Temperatura en x = 2.5 cm: %.4f °C\n", y(idx_medio));
 
 % Temperatura máxima en la barra
