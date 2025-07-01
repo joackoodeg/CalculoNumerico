@@ -18,3 +18,21 @@ W1 = 2;        % ancho base
 L = 6;         % largo total
 uE = 40;       % temperatura externa
 
+% Metodo 1:
+idx = find (x >= 2.5);
+disp(y(idx(1)));
+
+%% metodo 2:
+[~, idx_medio] = min(abs(x - 2.5));
+disp(y(idx_medio));
+
+%% obtener con centrada
+%% a
+idx = find(x >= 2.5, 1);
+disp(y(idx));
+
+%%% b
+h = x(2) - x(1);
+deriv = (y(idx + 1) - y(idx - 1)) / (2 * h);
+disp(deriv);
+
