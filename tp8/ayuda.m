@@ -18,6 +18,8 @@ W1 = 2;        % ancho base
 L = 6;         % largo total
 uE = 40;       % temperatura externa
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Metodo 1:
 idx = find (x >= 2.5);
 disp(y(idx(1)));
@@ -25,6 +27,8 @@ disp(y(idx(1)));
 %% metodo 2:
 [~, idx_medio] = min(abs(x - 2.5));
 disp(y(idx_medio));
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% obtener con centrada
 %% a
@@ -36,3 +40,38 @@ h = x(2) - x(1);
 deriv = (y(idx + 1) - y(idx - 1)) / (2 * h);
 disp(deriv);
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% para pasar polyfit a secante o algo asi hay que hacerla funcion
+poly_func = @(t) polyval(p, t);
+
+kmax = 10000;
+tol = 1e-9;
+
+[x1, h1] = secante(poly_func, 0.18, 0.25, kmax, tol);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+L = 20;
+
+[t,y]=rk4(F,inter,y0,L);
+
+y_aux= y(end, 1); %% Se toma el ultimo valor, porque 2.5 es extremo de intervalo
+
+% si rk4 no convergue entonces es un loop infinito
+while(1)
+  L = L*2; % Duplicar cant de pasos para buscar mayor exactitud
+ [t,y_dsp]=rk4(F,inter,y0,L);
+
+  y_actual = y_dsp(end,1); % toamos valor actual
+  if(abs(y_aux - y_actual)<1e-6) % nos fijamos si cumple la restriccion (6 digitos exactos)
+    break;
+  endif
+
+  y_aux = y_actual; % CONTINUAMOS
+endwhile
+
+disp("valor en t-2.6 con 6 decimales exactos");
+disp(y_actual);
